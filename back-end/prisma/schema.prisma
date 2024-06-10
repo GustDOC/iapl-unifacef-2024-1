@@ -19,7 +19,6 @@ model User {
   username    String        @unique // Nome de usuário
   password    String        // Senha
   is_admin    Boolean       @default(false)
-  sessions    Session[]
 }
 
 model Session {
