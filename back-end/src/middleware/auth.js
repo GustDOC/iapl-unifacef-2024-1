@@ -84,6 +84,7 @@ export default async function(req, res, next) {
     return res.status(403).end()
   }
 
+  
   // Verifica se a sessão é válida (não está expirada)
   const now = new Date()    // Data/hora atuais
   if(now.getTime() - session.start_time.getTime() > 
@@ -92,6 +93,16 @@ export default async function(req, res, next) {
     console.error('ERRO: não autenticado por sessão expirada.')
     return res.status(403).end()
   }
+  
+  /*
+  const now = new Date();
+  const sessionStartTime = new Date(now.getTime() - 12 * 60 * 60 * 1000); // Sessão iniciada 12 horas atrás
+  const sessionDuration = 24 * 60 * 60 * 1000; // 24 horas
+
+  if (now.getTime() - sessionStartTime.getTime() > sessionDuration) {
+    console.error('ERRO: não autenticado por sessão expirada.');
+    return res.status(403).end();
+  }*/
 
   // Sessão OK, armazenamos os dados do usuário recuperados junto com a
   // sessão em req.authUser para posterior utilização

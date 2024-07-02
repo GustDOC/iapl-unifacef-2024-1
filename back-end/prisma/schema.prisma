@@ -19,8 +19,20 @@ model User {
   username    String        @unique // Nome de usuário
   password    String        // Senha
   is_admin    Boolean       @default(false)
+  sessions    Session[]
 }
 
+model Cars {
+  id          Int           @id @default(autoincrement())
+  brand       String
+  model       String
+  owner_name  String
+  color       String
+  year        Int
+  imported    Boolean
+  plates      String  @unique
+}
+   
 model Session {
   sessid      String        @id               // id da sessão
   user_id     Int                             // id do usuário
